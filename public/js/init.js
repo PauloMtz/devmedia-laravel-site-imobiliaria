@@ -1,7 +1,8 @@
-// ativação do slide (está no site do materialize [na página do código do slider])
+// inicializa componentes (está no site do materialize)
 $(document).ready(function() {
 	$('.sidenav').sidenav();
 	$('.slider').slider({full_width: true});
+	$('select').formSelect();
 });
 
 // métodos para manipular os slides na página de detalhes
