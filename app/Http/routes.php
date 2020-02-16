@@ -27,6 +27,11 @@ Route::get('/contato', ['as' => 'site.contato', function(){
 	return view('site.contato');
 }]);
 
+// página de detalhes do imóvel [ o 'id' é obrigatório, o título é opcional (?) ]
+Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', function(){
+	return view('site.imovel');
+}]);
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
