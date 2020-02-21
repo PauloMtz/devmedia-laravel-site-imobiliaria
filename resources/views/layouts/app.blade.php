@@ -13,50 +13,59 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('lib/materialize/dist/css/materialize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"><!-- CTRL + SHIFT + D duplica linha -->
 
-    <!-- ** O layout do Laravel vem com estilização do Bootstrap por padrão ** -->
-
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>-->
 </head>
 <body id="app-layout">
-    <nav>
-        <div class="nav-wrapper green">
-            <div class="container">
-              <a href="#!" class="brand-logo">Logo</a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="#">Home</a></li>
-            </ul>
+    <header>
+        @include('layouts.admin._nav')
+    </header>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="#">Home</a></li>
+    </ul>
+    <main>
+        <!-- essa 'mensagem' foi definida lá no UsuarioController -->
+        @if(Session::has('mensagem'))
+        <div class="container">
+            <div class="row">
+                <!-- 'mensagem' e ['class'] vêm de UsuarioController -->
+                <div class="card {{ Session::get('mensagem')['class'] }}">
+                    <div class="card-content" align="center">
+                        {{ Session::get('mensagem')['msg'] }}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</nav>
+        @endif
+        @yield('content')
+    </main>
 
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="#">Home</a></li>
-</ul>
+    <footer class="page-footer blue-grey lighten-2">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">SisAdmin</h5>
+                    <p>Curso de Laravel - DevMedia</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 class="white-text">Links</h5>
+                    <ul>
+                        <li><a class="grey-text text-lighten-3" target="_blank" href="{{ route('site.home') }}">Site</a></li>
+                        <li><a class="grey-text text-lighten-3" href="{{ route('admin.home') }}">Início</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © Todos os direitos reservados | 2020
+                <a class="grey-text text-lighten-4 right" href="#!">Mais Links...</a>
+            </div>
+        </div>
+    </footer>
 
-@yield('content')
+    <script src="{{ asset('lib/jquery/dist/jquery.js') }}"></script>
+    <script src="{{ asset('lib/materialize/dist/js/materialize.js') }}"></script>
+    <script src="{{ asset('js/init.js') }}"></script><!-- CTRL + SHIFT + D duplica linha -->
 
-<script src="{{ asset('lib/jquery/dist/jquery.js') }}"></script>
-<script src="{{ asset('lib/materialize/dist/js/materialize.js') }}"></script>
-<script src="{{ asset('js/init.js') }}"></script><!-- CTRL + SHIFT + D duplica linha -->
-
-<!-- JavaScripts padrão do Laravel -->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}-->
 </body>
 </html>
