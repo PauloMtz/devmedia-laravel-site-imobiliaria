@@ -43,18 +43,15 @@ Route::get('/admin/login', ['as' => 'admin.login', function() {
 	return view('admin.login.index');
 }]);
 
-// --------------------------------------------------------------
-// 				** ACESSA OS CONTROLLERS **
-// --------------------------------------------------------------
-
-// ** ATENTAR PARA 'GET' & 'POST' **
-
 // aqui é 'post' porque envia dados de formulário
 Route::post('/admin/login', ['as' => 'admin.login', 'uses' => 'Admin\UsuarioController@login']);
 
 //Route::get('/home', 'HomeController@index');
 
-// protegendo o acesso não autenticado
+// --------------------------------------------------------------
+// 		** protegendo o acesso não autenticado
+// 		** todos os acessos dentro desse Route::group()
+// --------------------------------------------------------------
 // esse 'auth' vem de Kernel.php -> $routeMiddleware
 Route::group(['middleware'=>'auth'], function() {
 
@@ -65,5 +62,26 @@ Route::group(['middleware'=>'auth'], function() {
 	Route::get('/admin', ['as' => 'admin.home', function() {
 		return view('admin.home.index');
 	}]);
+
+	// [ LISTAR ]
+	Route::get('/admin/usuarios', ['as' => 'admin.usuarios', 'uses' => 'Admin\UsuarioController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/usuarios/add', ['as' => 'admin.usuarios.add', 'uses' => 'Admin\UsuarioController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/usuarios/salvar', ['as' => 'admin.usuarios.salvar', 'uses' => 'Admin\UsuarioController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/usuarios/editar/{id}', ['as' => 'admin.usuarios.editar', 'uses' => 'Admin\UsuarioController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/usuarios/atualizar/{id}', ['as' => 'admin.usuarios.atualizar', 'uses' => 'Admin\UsuarioController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/usuarios/excluir/{id}', ['as' => 'admin.usuarios.excluir', 'uses' => 'Admin\UsuarioController@excluir']);
 });
+// --------------------------------------------------------------
+// 		** FIM do bloco de acesso protegido
+// --------------------------------------------------------------
 

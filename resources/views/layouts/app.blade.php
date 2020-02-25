@@ -40,7 +40,7 @@
     </main>
 
     <footer class="page-footer blue-grey lighten-2">
-        <div class="container">
+        <!--<div class="container">
             <div class="row">
                 <div class="col l6 s12">
                     <h5 class="white-text">SisAdmin</h5>
@@ -54,11 +54,11 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="footer-copyright">
             <div class="container">
                 © Todos os direitos reservados | 2020
-                <a class="grey-text text-lighten-4 right" href="#!">Mais Links...</a>
+                <a class="grey-text text-lighten-4 right" target="_blank" href="https://www.devmedia.com.br/curso/laravel-criando-um-website-completo/1930">Curso de Laravel - DevMedia</a>
             </div>
         </div>
     </footer>
