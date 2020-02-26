@@ -19,13 +19,18 @@
 // 				** CARREGA PÁGINAS **
 // --------------------------------------------------------------
 
+// rota para página
 Route::get('/', ['as' => 'site.home', function(){
 	return view('site.home');
 }]);
 
-Route::get('/sobre', ['as' => 'site.sobre', function(){
+// no lugar dessa rota para a página...
+/*Route::get('/sobre', ['as' => 'site.sobre', function(){
 	return view('site.sobre');
-}]);
+}]);*/
+
+// ... usar rota para o controller
+Route::get('/sobre', ['as'=>'site.sobre', 'uses'=>'Site\PaginaController@sobre']);
 
 Route::get('/contato', ['as' => 'site.contato', function(){
 	return view('site.contato');

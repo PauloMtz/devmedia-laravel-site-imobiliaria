@@ -46,8 +46,8 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2020 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                &copy; Todos os direitos reservados | 2017 - <?php echo date('Y') ?>
+                <a class="grey-text text-lighten-4 right" target="_blank" href="https://www.devmedia.com.br/curso/laravel-criando-um-website-completo/1930">Curso de Laravel - DevMedia</a>
             </div>
         </div>
     </footer>

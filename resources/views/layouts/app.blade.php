@@ -57,7 +57,7 @@
         </div>-->
         <div class="footer-copyright">
             <div class="container">
-                © Todos os direitos reservados | 2020
+                © Todos os direitos reservados | 2017 - <?php echo date('Y') ?>
                 <a class="grey-text text-lighten-4 right" target="_blank" href="https://www.devmedia.com.br/curso/laravel-criando-um-website-completo/1930">Curso de Laravel - DevMedia</a>
             </div>
         </div>

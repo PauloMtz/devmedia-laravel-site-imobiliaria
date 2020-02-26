@@ -28,13 +28,13 @@
 					<td>{{ $u->name }}</td>
 					<td>{{ $u->email }}</td>
 					<td style="text-align:center">
-						<a href="{{ route('admin.usuarios.editar', $u->id) }}" class="btn blue">Editar</a>
+						<a href="{{ route('admin.usuarios.editar', $u->id) }}" title="Editar"><img src="{{ asset('img/edit.png') }}"></a>
 						<span style="margin-left:40px"></span>
 						<a 
 							href="javascript: if(confirm('Confirma exclusão de registro?')){
 									window.location.href='{{ route('admin.usuarios.excluir', $u->id) }}'
-								}" class="btn red">
-							Excluir
+								}" title="Excluir">
+							<img src="{{ asset('img/delete.png') }}">
 						</a>
 					</td>
 				</tr>
@@ -43,7 +43,7 @@
 		</table>
 	</div>
 	<div class="row">
-		<a class="btn  blue-grey lighten-2" href="{{ route('admin.usuarios.add') }}">Novo usuário</a>
+		<a class="btn  blue-grey lighten-2" href="{{ route('admin.usuarios.add') }}" style="width:170px">Novo usuário</a>
 	</div>
 </div>
 @endsection
