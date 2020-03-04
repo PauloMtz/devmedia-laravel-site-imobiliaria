@@ -4,15 +4,24 @@
 
 <div class="container">
 	<div class="row section">
-		<h3 align="center">Contato</h3>
+		<h3>Contato</h3>
 		<div class="divider"></div>
 	</div>
 	<div class="row section">
 		<div class="col s12 m7">
-			<img class="responsive-img" src="{{ asset('img/apartment.jpg') }}">
+			@if(isset($pagina->mapa))
+			<div class="video-container">
+				{!! $pagina->mapa !!}
+			</div>
+			@else
+			<img class="responsive-img" src="{{ asset($pagina->imagem) }}">
+			@endif
 		</div>
 		<div class="col s12 m5">
-			<form class="col s12 m6" style="width:100%">
+			<h4>{{ $pagina->titulo }}</h4>
+			<blockquote>{{ $pagina->descricao }}</blockquote>
+			<form class="col s12 m6" action="{{ route('site.contato.enviar') }}" method="post" style="width:100%">
+				{{ csrf_field() }} <!-- gera um token de validação do formulário -->
 				<div class="input-field">
 					<label>Nome</label>
 					<input type="text" name="nome" class="validate">
@@ -23,7 +32,7 @@
 				</div>
 				<div class="input-field">
 					<label>Mensagem</label>
-					<textarea class="materialize-textarea"></textarea>
+					<textarea name="mensagem" class="materialize-textarea"></textarea>
 				</div>
 				<button class="btn blue" style="width:140px">Enviar</button>
 			</form>

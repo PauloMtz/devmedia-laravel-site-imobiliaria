@@ -9,6 +9,14 @@
 				@if(Auth::guest())
 				<li><a href="{{ route('admin.login') }}">Login</a></li>
 				@else
+				<!-- menu-dropdown -->
+				<li><a class="dropdown-trigger" data-target="dropdown_admin">Conteúdo<i class="material-icons right">arrow_drop_down</i></a></li>
+				<!-- itens do menu-dropdown -->
+				<ul id="dropdown_admin" class="dropdown-content">
+					<li><a href="{{ route('admin.usuarios') }}">Usuários</a></li>
+					<li><a href="{{ route('admin.paginas') }}">Páginas</a></li>
+				</ul>
+				<!-- fim do menu-dropdown -->
 				<li><a href="#">{{ Auth::user()->name }}</a></li>
 				<li><a href="{{ route('admin.sair') }}">Sair</a></li>
 				@endif

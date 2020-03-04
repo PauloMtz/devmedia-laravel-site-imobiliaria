@@ -24,6 +24,18 @@
         <li><a href="#">Contato</a></li>
     </ul>
     <main>
+        @if(Session::has('mensagem'))
+        <div class="container">
+            <div class="row">
+                <!-- 'mensagem' e ['class'] vêm de UsuarioController -->
+                <div class="card {{ Session::get('mensagem')['class'] }}">
+                    <div class="card-content" align="center">
+                        {{ Session::get('mensagem')['msg'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
         @yield('content')
     </main>
 

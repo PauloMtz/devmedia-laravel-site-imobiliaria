@@ -34,5 +34,31 @@ class PaginasSeeds extends Seeder
 
         // para dar uma mensagem de retorno para o usuário
         echo "Pagina sobre criada com sucesso!";
+
+        // ------------------ x -------------------- x -------------------
+
+        // verificar se existe uma página já criada
+        $existe = Pagina::where('tipo', '=', 'contato')->count();
+
+        if ($existe) {
+            $paginaContato = Pagina::where('tipo', '=', 'contato')->first();
+        } else {
+            // se não existir -> cria
+            $paginaContato = new Pagina();
+        }
+
+        // implementação dos dados para gravação
+        $paginaContato->titulo = 'Entre em contato';
+        $paginaContato->descricao = 'Preencha o formulário';
+        $paginaContato->texto = 'Contato';
+        $paginaContato->imagem = 'img/apartment.jpg';
+        $paginaContato->email = 'acessopepa@gmail.com';
+        $paginaContato->tipo = 'contato';
+
+        // salvar no banco
+        $paginaContato->save();
+
+        // para dar uma mensagem de retorno para o usuário
+        echo "Pagina de contato criada com sucesso!";
     }
 }

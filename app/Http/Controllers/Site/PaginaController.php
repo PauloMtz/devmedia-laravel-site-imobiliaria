@@ -26,14 +26,30 @@ class PaginaController extends Controller
         return view('site.sobre', compact('pagina'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function contato()
     {
-        //
+        // busca registro no banco
+        $pagina = Pagina::where('tipo', '=', 'contato')->first();
+        //dd($pagina);
+
+        // retorna a página sobre em:
+        // resources/views/site/sobre.blade.php, enviando os dados de $pagina
+        return view('site.contato', compact('pagina'));
+    }
+
+    public function contatoEnviar(Request $request)
+    {
+        $pagina = Pagina::where('tipo', '=', 'contato')->first();
+        $email = $pagina->email;
+
+        \Mail::send('emails.contato-template', ['request'=>$request], function($message) use ($request, $email) {
+            $message->from($request['email'], $request['nome']); // email e nome são campos do formulário
+            $message->replyTo($request['email'], $request['nome']);
+            $message->To($email, 'Contato do site');
+            $message->subject('Contato do site');
+        });
+        \Session::flash('mensagem', ['msg' => 'Mensagem enviada com sucesso.', 'class'=>'teal lighten-2 white-text']);
+        return redirect()->route('site.contato');
     }
 
     /**

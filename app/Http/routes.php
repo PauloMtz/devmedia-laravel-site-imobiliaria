@@ -32,9 +32,13 @@ Route::get('/', ['as' => 'site.home', function(){
 // ... usar rota para o controller
 Route::get('/sobre', ['as'=>'site.sobre', 'uses'=>'Site\PaginaController@sobre']);
 
-Route::get('/contato', ['as' => 'site.contato', function(){
+Route::get('/contato', ['as'=>'site.contato', 'uses'=>'Site\PaginaController@contato']);
+
+Route::post('/contato/enviar', ['as'=>'site.contato.enviar', 'uses'=>'Site\PaginaController@contatoEnviar']);
+
+/*Route::get('/contato', ['as' => 'site.contato', function(){
 	return view('site.contato');
-}]);
+}]);*/
 
 // página de detalhes do imóvel [ o 'id' é obrigatório, o título é opcional (?) ]
 Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', function(){
@@ -68,6 +72,8 @@ Route::group(['middleware'=>'auth'], function() {
 		return view('admin.home.index');
 	}]);
 
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 	// [ LISTAR ]
 	Route::get('/admin/usuarios', ['as' => 'admin.usuarios', 'uses' => 'Admin\UsuarioController@index']);
 
@@ -85,8 +91,19 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// [ EXCLUIR ] exclui usuário
 	Route::get('/admin/usuarios/excluir/{id}', ['as' => 'admin.usuarios.excluir', 'uses' => 'Admin\UsuarioController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+	// [ PÁGINAS LISTAR ]
+	Route::get('/admin/paginas', ['as' => 'admin.paginas', 'uses' => 'Admin\PaginaController@index']);
+
+	// [ PÁGINAS EDITAR ] carrega a página para edição
+	Route::get('/admin/paginas/editar/{id}', ['as' => 'admin.paginas.editar', 'uses' => 'Admin\PaginaController@editar']);
+
+	// [ PÁGINAS ATUALIZAR ] atualiza os dados quando o formulário for submetido
+	Route::put('/admin/paginas/atualizar/{id}', ['as' => 'admin.paginas.atualizar', 'uses' => 'Admin\PaginaController@atualizar']);
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
 // --------------------------------------------------------------
-
