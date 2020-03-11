@@ -103,6 +103,29 @@ Route::group(['middleware'=>'auth'], function() {
 	// [ PÁGINAS ATUALIZAR ] atualiza os dados quando o formulário for submetido
 	Route::put('/admin/paginas/atualizar/{id}', ['as' => 'admin.paginas.atualizar', 'uses' => 'Admin\PaginaController@atualizar']);
 
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+	// foi copiado usuarios e substituído por tipos
+
+	// [ LISTAR ]
+	Route::get('/admin/tipos', ['as' => 'admin.tipos', 'uses' => 'Admin\TipoController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/tipos/add', ['as' => 'admin.tipos.add', 'uses' => 'Admin\TipoController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/tipos/salvar', ['as' => 'admin.tipos.salvar', 'uses' => 'Admin\TipoController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/tipos/editar/{id}', ['as' => 'admin.tipos.editar', 'uses' => 'Admin\TipoController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/tipos/atualizar/{id}', ['as' => 'admin.tipos.atualizar', 'uses' => 'Admin\TipoController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/tipos/excluir/{id}', ['as' => 'admin.tipos.excluir', 'uses' => 'Admin\TipoController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
