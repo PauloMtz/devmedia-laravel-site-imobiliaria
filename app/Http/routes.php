@@ -126,7 +126,29 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
-});
+	// foi copiado tipos e substituído por cidades
+
+	// [ LISTAR ]
+	Route::get('/admin/cidades', ['as' => 'admin.cidades', 'uses' => 'Admin\CidadeController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/cidades/add', ['as' => 'admin.cidades.add', 'uses' => 'Admin\CidadeController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/cidades/salvar', ['as' => 'admin.cidades.salvar', 'uses' => 'Admin\CidadeController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/cidades/editar/{id}', ['as' => 'admin.cidades.editar', 'uses' => 'Admin\CidadeController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/cidades/atualizar/{id}', ['as' => 'admin.cidades.atualizar', 'uses' => 'Admin\CidadeController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/cidades/excluir/{id}', ['as' => 'admin.cidades.excluir', 'uses' => 'Admin\CidadeController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+}); // PAREI EM 05:00 MIN
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
 // --------------------------------------------------------------

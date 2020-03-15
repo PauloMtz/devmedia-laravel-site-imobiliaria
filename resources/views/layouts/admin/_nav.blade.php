@@ -14,8 +14,10 @@
 				<!-- itens do menu-dropdown -->
 				<ul id="dropdown_admin" class="dropdown-content">
 					<li><a href="{{ route('admin.tipos') }}">Tipos de imóvel</a></li>
+					<li><a href="{{ route('admin.cidades') }}">cidades</a></li>
 					<li><a href="{{ route('admin.usuarios') }}">Usuários</a></li>
 					<li><a href="{{ route('admin.paginas') }}">Páginas</a></li>
+					<li><a href="{{ route('admin.sair') }}">Sair</a></li>
 				</ul>
 				<!-- fim do menu-dropdown -->
 				<li><a href="#">{{ Auth::user()->name }}</a></li>
@@ -30,6 +32,7 @@
 				@else
 				<li><a href="#">{{ Auth::user()->name }}</a></li>
 				<li><a href="{{ route('admin.tipos') }}">Tipos de imóvel</a></li>
+				<li><a href="{{ route('admin.cidades') }}">Cidades</a></li>
 				<li><a href="{{ route('admin.usuarios') }}">Usuários</a></li>
 				<li><a href="{{ route('admin.paginas') }}">Páginas</a></li>
 				<li><a href="{{ route('admin.sair') }}">Sair</a></li>
