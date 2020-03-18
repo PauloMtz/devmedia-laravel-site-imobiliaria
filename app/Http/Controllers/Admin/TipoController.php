@@ -47,7 +47,7 @@ class TipoController extends Controller
         // procura o 'id' no banco
         $registro = Tipo::find($id);
 
-        // envia os dados referente à variável '$t' para a view
+        // envia os dados referente à variável '$registro' para a view
         return view('admin.tipos.editar-tipo', compact('registro'));
     }
 

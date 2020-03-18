@@ -49,7 +49,7 @@ class CidadeController extends Controller
         // procura o 'id' no banco
         $registro = Cidade::find($id);
 
-        // envia os dados referente à variável '$t' para a view
+        // envia os dados referente à variável '$registro' para a view
         return view('admin.cidades.editar-cidade', compact('registro'));
     }
 
