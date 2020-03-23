@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Tipo; // chamada do model, fica dentro de /app
+use App\Imovel;
 
 class TipoController extends Controller
 {
@@ -66,7 +67,8 @@ class TipoController extends Controller
         $registro->update(); // pode ser update ou save
 
         // depois de tudo isso, redireciona usuário com mensagem de êxito
-        \Session::flash('mensagem', ['msg' => 'Registro atualizado com sucesso.', 'class'=>'teal lighten-2 white-text']);
+        \Session::flash('mensagem', ['msg' => 'Registro atualizado com sucesso.', 
+            'class'=>'teal lighten-2 white-text']);
 
         return redirect()->route('admin.tipos');
     }
@@ -74,6 +76,21 @@ class TipoController extends Controller
     // exclui registro
     public function excluir($id)
     {
+        // verifica antes se o tipo tem imovel relacionado
+        if (Imovel::where('tipo_id', '=', $id)->count()) {
+            $msg = "Não foi possível excluir tipo de imóvel. Há imóveis relacionados: ";
+            $imoveis = Imovel::where('tipo_id', '=', $id)->get();
+            foreach ($imoveis as $imovel) {
+                $msg .= "# id: " . $imovel->id . " - título: " . $imovel->titulo . " ";
+            }
+            $msg .= "."; // finaliza mensagem com ponto final
+
+            \Session::flash('mensagem', ['msg' => $msg, 
+                'class'=>'red lighten-2 white-text']);
+
+            return redirect()->route('admin.tipos');
+        }
+
         // procura o id no banco e exclui
         Tipo::find($id)->delete();
 

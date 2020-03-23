@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cidade; // chamada do model, fica dentro de /app
+use App\Imovel;
 
 class CidadeController extends Controller
 {
@@ -38,7 +39,8 @@ class CidadeController extends Controller
         $c->uf = $dados['uf'];
         $c->save();
 
-        \Session::flash('mensagem', ['msg' => 'Registro salvo com sucesso.', 'class'=>'teal lighten-2 white-text']);
+        \Session::flash('mensagem', ['msg' => 'Registro salvo com sucesso.', 
+            'class'=>'teal lighten-2 white-text']);
 
         return redirect()->route('admin.cidades');
     }
@@ -70,7 +72,8 @@ class CidadeController extends Controller
         $registro->update(); // pode ser update ou save
 
         // depois de tudo isso, redireciona usuário com mensagem de êxito
-        \Session::flash('mensagem', ['msg' => 'Registro atualizado com sucesso.', 'class'=>'teal lighten-2 white-text']);
+        \Session::flash('mensagem', ['msg' => 'Registro atualizado com sucesso.', 
+            'class'=>'teal lighten-2 white-text']);
 
         return redirect()->route('admin.cidades');
     }
@@ -78,11 +81,27 @@ class CidadeController extends Controller
     // exclui registro
     public function excluir($id)
     {
+        // verifica antes se a cidade tem imovel relacionado
+        if (Imovel::where('cidade_id', '=', $id)->count()) {
+            $msg = "Não foi possível excluir cidade. Há imóveis relacionados: ";
+            $imoveis = Imovel::where('cidade_id', '=', $id)->get();
+            foreach ($imoveis as $imovel) {
+                $msg .= "# id: " . $imovel->id . " - título: " . $imovel->titulo . " ";
+            }
+            $msg .= "."; // finaliza mensagem com ponto final
+
+            \Session::flash('mensagem', ['msg' => $msg, 
+                'class'=>'red lighten-2 white-text']);
+
+            return redirect()->route('admin.cidades');
+        }
+        
         // procura o id no banco e exclui
         Cidade::find($id)->delete();
 
         // depois, redireciona usuário com mensagem de êxito
-        \Session::flash('mensagem', ['msg' => 'Registro excluído com êxito.', 'class'=>'teal lighten-2 white-text']);
+        \Session::flash('mensagem', ['msg' => 'Registro excluído com êxito.', 
+            'class'=>'teal lighten-2 white-text']);
 
         return redirect()->route('admin.cidades');
     }

@@ -148,6 +148,28 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
+	// foi copiado cidades e substituído por imoveis
+
+	// [ LISTAR ]
+	Route::get('/admin/imoveis', ['as' => 'admin.imoveis', 'uses' => 'Admin\ImovelController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/imoveis/add', ['as' => 'admin.imoveis.add', 'uses' => 'Admin\ImovelController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/imoveis/salvar', ['as' => 'admin.imoveis.salvar', 'uses' => 'Admin\ImovelController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/imoveis/editar/{id}', ['as' => 'admin.imoveis.editar', 'uses' => 'Admin\ImovelController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/imoveis/atualizar/{id}', ['as' => 'admin.imoveis.atualizar', 'uses' => 'Admin\ImovelController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/imoveis/excluir/{id}', ['as' => 'admin.imoveis.excluir', 'uses' => 'Admin\ImovelController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
