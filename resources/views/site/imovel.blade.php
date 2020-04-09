@@ -4,7 +4,7 @@
 
 <div class="container">
 	<div class="row section">
-		<h3 align="center">Mais detalhes sobre o imóvel</h3>
+		<h3>Mais informações</h3>
 		<div class="divider"></div>
 	</div>
 	<div class="row section">

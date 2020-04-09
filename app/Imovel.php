@@ -20,4 +20,11 @@ class Imovel extends Model
     {
     	return $this->belongsTo('App\Cidade', 'cidade_id'); 
     }
+
+    // relacionamento com o model Galeria
+    public function galeria()
+    {
+        // relaciona com a chave estrangeira da tabela galerias
+        return $this->belongsTo('App\Galeria', 'imovel_id');
+    }
 }
