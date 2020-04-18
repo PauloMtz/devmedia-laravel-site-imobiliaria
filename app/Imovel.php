@@ -25,6 +25,6 @@ class Imovel extends Model
     public function galeria()
     {
         // relaciona com a chave estrangeira da tabela galerias
-        return $this->belongsTo('App\Galeria', 'imovel_id');
+        return $this->hasMany('App\Galeria', 'imovel_id');
     }
 }

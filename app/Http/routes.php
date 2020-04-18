@@ -170,6 +170,28 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
+	// foi copiado imoveis e substituído por galerias
+
+	// [ LISTAR ] ** esse 'id' é do imóvel **
+	Route::get('/admin/galerias/{id}', ['as' => 'admin.galerias', 'uses' => 'Admin\GaleriaController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/galerias/add/{id}', ['as' => 'admin.galerias.add', 'uses' => 'Admin\GaleriaController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/galerias/salvar/{id}', ['as' => 'admin.galerias.salvar', 'uses' => 'Admin\GaleriaController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/galerias/editar/{id}', ['as' => 'admin.galerias.editar', 'uses' => 'Admin\GaleriaController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/galerias/atualizar/{id}', ['as' => 'admin.galerias.atualizar', 'uses' => 'Admin\GaleriaController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/galerias/excluir/{id}', ['as' => 'admin.galerias.excluir', 'uses' => 'Admin\GaleriaController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
