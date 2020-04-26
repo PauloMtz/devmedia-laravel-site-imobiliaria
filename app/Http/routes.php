@@ -24,6 +24,8 @@ Route::get('/', ['as' => 'site.home', function(){
 	return view('site.home');
 }]);
 
+Route::get('/', ['as'=>'site.home', 'uses'=>'Site\HomeController@index']);
+
 // no lugar dessa rota para a página...
 /*Route::get('/sobre', ['as' => 'site.sobre', function(){
 	return view('site.sobre');
@@ -41,9 +43,11 @@ Route::post('/contato/enviar', ['as'=>'site.contato.enviar', 'uses'=>'Site\Pagin
 }]);*/
 
 // página de detalhes do imóvel [ o 'id' é obrigatório, o título é opcional (?) ]
-Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', function(){
+/*Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', function(){
 	return view('site.imovel');
-}]);
+}]);*/
+
+Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', 'uses'=>'Site\ImovelController@index']);
 
 // essa autenticação automática não será utilizada
 //Route::auth();
