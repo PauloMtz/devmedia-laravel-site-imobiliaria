@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $imoveis = Imovel::orderBy('id', 'desc')->paginate(2);
+        $imoveis = Imovel::orderBy('id', 'desc')->paginate(1);
         return view('site.home', compact('imoveis'));
     }
 }

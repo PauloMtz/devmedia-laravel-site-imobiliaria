@@ -21,9 +21,9 @@
 				<th>Status</th>
 				<th>Cidade</th>
 				<th>Valor</th>
-				<th>Imagem</th>
+				<th>Galeria</th>
 				<th>Publicado</th>
-				<th style="text-align:center">Ações</th>
+				<th colspan="2">Ações</th>
 			</thead>
 			<tbody>
 				@foreach($registros as $registro)
@@ -33,17 +33,18 @@
 					<td>{{ $registro->status }}</td>
 					<td>{{ $registro->cidade->nome }}</td>
 					<td>R$ {{ number_format($registro->valor, 2, ",", ".") }}</td>
-					<td><img width="100" src="{{ asset($registro->imagem) }}"></td>
+					<td><a href="{{ route('admin.galerias', $registro->id) }}">
+							<img width="100" src="{{ asset($registro->imagem) }}"></a>
+					</td>
 					<td>{{ $registro->publicar }}</td>
-					<td style="text-align:center">
-						<a href="{{ route('admin.imoveis.editar', $registro->id) }}" title="Editar"><img src="{{ asset('img/edit.png') }}"></a>
-						<span style="margin-left:40px"></span>
-						<a 
-							href="javascript: if(confirm('Confirma exclusão de registro?')){
-									window.location.href='{{ route('admin.imoveis.excluir', $registro->id) }}'
-								}" title="Excluir">
-							<img src="{{ asset('img/delete.png') }}">
-						</a>
+					<td><a href="{{ route('admin.imoveis.editar', $registro->id) }}" title="Editar">
+						<img src="{{ asset('img/edit.png') }}"></a>
+					</td>
+					<td><a href="javascript: 
+						if(confirm('Confirma exclusão de registro?')) {
+							window.location.href='{{ route('admin.imoveis.excluir', $registro->id) }}'
+						}" title="Excluir">
+						<img src="{{ asset('img/delete.png') }}"></a>
 					</td>
 				</tr>
 				@endforeach

@@ -22,7 +22,7 @@
 				<th>Descrição</th>
 				<th>Imagem</th>
 				<th>Ordem</th>
-				<th colspan="2">Ações</th>
+				<th style="text-align:center">Ações</th>
 			</thead>
 			<tbody>
 				@foreach($registros as $registro)
@@ -50,6 +50,9 @@
 	<div class="row">
 		<a class="btn  blue-grey lighten-2" href="{{ route('admin.galerias.add', $imovel->id) }}" 
 			style="width:170px">Adicionar galeria</a><!-- $imovel->id vem do controller [GaleriaController] -->
+		<span style="margin-left:40px"></span>
+		<a class="btn grey lighten-1" href="{{ route('admin.imoveis') }}" 
+			style="width:170px">Voltar</a>
 	</div>
 </div>
 @endsection
