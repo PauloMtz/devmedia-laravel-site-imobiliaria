@@ -196,6 +196,28 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
+	// foi copiado galerais e substituído por slides
+
+	// [ LISTAR ] 
+	Route::get('/admin/slides', ['as' => 'admin.slides', 'uses' => 'Admin\SlideController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/slides/add', ['as' => 'admin.slides.add', 'uses' => 'Admin\SlideController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/slides/salvar', ['as' => 'admin.slides.salvar', 'uses' => 'Admin\SlideController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/slides/editar/{id}', ['as' => 'admin.slides.editar', 'uses' => 'Admin\SlideController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/slides/atualizar/{id}', ['as' => 'admin.slides.atualizar', 'uses' => 'Admin\SlideController@atualizar']);
+
+	// [ EXCLUIR ] exclui usuário
+	Route::get('/admin/slides/excluir/{id}', ['as' => 'admin.slides.excluir', 'uses' => 'Admin\SlideController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido

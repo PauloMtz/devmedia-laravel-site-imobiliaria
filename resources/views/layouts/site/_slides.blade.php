@@ -1,25 +1,16 @@
 <div class="slider">
 	<ul class="slides">
-		<li>
-			<img src="{{ asset('img/apartment.jpg') }}" alt="Imagem">
-			<div class="caption center-align">
-				<h3>SEU SONHO</h3>
-				<h5>Aquele apartamento que você estava procurando.</h5>
+		@foreach($slides as $slide)
+		<li onclick="window.location='{{ $slide->link }}'">
+			<img src="{{ asset($slide->imagem) }}" alt="Imagem">
+			<div class="caption {{ $direcaoSlide[rand(0, 2)] }}">
+				<h3>{{ $slide->titulo }}</h3>
+				<h5>{{ $slide->descricao }}</h5>
+				@if($slide->link != null)
+					<a href="{{ $slide->link }}" class="btn blue-grey lighten-2" style="width:140px">mais...</a>
+				@endif
 			</div>
 		</li>
-		<li>
-			<img src="{{ asset('img/aperto-mao.jpg') }}" alt="Imagem">
-			<div class="caption right-align">
-				<h3>CONFIANÇA</h3>
-				<h5>Conte com a gente, que resolvemos tudo para você!</h5>
-			</div>
-		</li>
-		<li>
-			<img src="{{ asset('img/calculadora.jpg') }}" alt="Imagem">
-			<div class="caption left-align">
-				<h3>ECONOMICIDADE</h3>
-				<h5>Prestações que cabem no seu bolso.</h5>
-			</div>
-		</li>
+		@endforeach
 	</ul>
 </div>
