@@ -26,7 +26,7 @@
 	</div>
 	<div class="file-field input-field col m6 s12">
 		@if(isset($registro->imagem))
-		<img width="120px" src="{{ asset($registro->imagem) }}">
+		<img width="120px" src="{{ asset($registro->imagem) }}" >
 		@endif
 	</div>
 </div>

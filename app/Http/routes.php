@@ -49,6 +49,8 @@ Route::post('/contato/enviar', ['as'=>'site.contato.enviar', 'uses'=>'Site\Pagin
 
 Route::get('/imovel/{id}/{titulo?}', ['as' => 'site.imovel', 'uses'=>'Site\ImovelController@index']);
 
+Route::get('/busca', ['as' => 'site.busca', 'uses'=>'Site\HomeController@busca']);
+
 // essa autenticação automática não será utilizada
 //Route::auth();
 

@@ -28,6 +28,8 @@
 	@endforeach
 </div>
 <!-- paginação com Laravel -->
+@if($paginacao)
 <div class="row" align="center">
 	{{ $imoveis->links() }}
 </div>
+@endif
