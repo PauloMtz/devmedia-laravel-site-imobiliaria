@@ -220,6 +220,41 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
+	// foi copiado slides e substituído por papeis
+
+	// [ LISTAR ] 
+	Route::get('/admin/papel', ['as' => 'admin.papel', 'uses' => 'Admin\PapelController@index']);
+
+	// [ INSERIR ] carrega a página de inserção
+	Route::get('/admin/papel/add', ['as' => 'admin.papel.add', 'uses' => 'Admin\PapelController@adicionar']);
+
+	// [ INSERIR ] salva os dados quando o formulário for submetido
+	Route::post('/admin/papel/salvar', ['as' => 'admin.papel.salvar', 'uses' => 'Admin\PapelController@salvar']);
+
+	// [ EDITAR ] carrega a página de edição
+	Route::get('/admin/papel/editar/{id}', ['as' => 'admin.papel.editar', 'uses' => 'Admin\PapelController@editar']);
+
+	// [ EDITAR ] salva os dados quando o formulário for submetido
+	Route::put('/admin/papel/atualizar/{id}', ['as' => 'admin.papel.atualizar', 'uses' => 'Admin\PapelController@atualizar']);
+
+	// [ EXCLUIR ] exclui registro
+	Route::get('/admin/papel/excluir/{id}', ['as' => 'admin.papel.excluir', 'uses' => 'Admin\PapelController@excluir']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+	// permissões
+
+	// [ LISTAR ] permissões
+	Route::get('/admin/papel/permissao/{id}', ['as' => 'admin.papel.permissao', 'uses' => 'Admin\PapelController@permissao']);
+
+	// [ INSERIR ]
+	Route::post('/admin/papel/permissao/{id}/salvar', ['as' => 'admin.papel.permissao.salvar', 'uses' => 'Admin\PapelController@salvarPermissao']);
+
+	// [ EXCLUIR ]
+	Route::get('/admin/papel/permissao/{id}/remover/{id_permissao}', ['as' => 'admin.papel.permissao.remover', 'uses' => 'Admin\PapelController@removerPermissao']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
