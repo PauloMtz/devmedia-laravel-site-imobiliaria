@@ -29,6 +29,8 @@
 					<td>{{ $c->nome }}</td>
 					<td>{{ $c->descricao }}</td>
 					<td style="text-align:center">
+						<a href="{{ route('admin.papel.permissao', $c->id) }}" title="Permissão"><img src="{{ asset('img/papeis.png') }}"></a>
+						<span style="margin-left:40px"></span>
 						@if($c->nome != 'admin')
 						<a href="{{ route('admin.papel.editar', $c->id) }}" title="Editar"><img src="{{ asset('img/edit.png') }}"></a>
 						@else

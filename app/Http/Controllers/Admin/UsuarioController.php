@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Auth; // usar o sistema de autenticação do Laravel
-use APP\User;
+use App\User;
+use App\Papel; // chama o model
 
 class UsuarioController extends Controller
 {
@@ -33,6 +34,12 @@ class UsuarioController extends Controller
     // lista os usuários
     public function index()
     {
+        /*if (auth()->user()->can('listar-usuarios', true)) {
+            dd('sim');
+        } else {
+            dd('não');
+        }*/
+
     	// lista todos os usuários
     	$usuario = User::all();
 
@@ -110,5 +117,41 @@ class UsuarioController extends Controller
     	\Session::flash('mensagem', ['msg' => 'Registro excluído com êxito.', 'class'=>'teal lighten-2 white-text']);
 
     	return redirect()->route('admin.usuarios');
+    }
+
+    // -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+    //         ***********    RELACIONANDO PAPEL-USUÁRIO *****************
+    // -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+    // os nomes dos métodos aqui devem ser conforme estabelecidos nas rotas
+
+    public function papel($id)
+    {
+        $usuario = User::find($id);
+        $papel = Papel::all();
+
+        return view('admin.usuarios.papel', compact('usuario', 'papel'));
+    }
+
+    public function salvarPapel(Request $req, $id)
+    {
+        $usuario = User::find($id);
+        $dados = $req->all();
+        $papel = Papel::find($dados['papel_id']);
+        // adicionaPapel() está no model User [APP\User]
+        $usuario->adicionaPapel($papel);
+
+        return redirect()->back(); // retorna para última página
+    }
+
+    public function excluirPapel($id, $papel_id)
+    {
+        $usuario = User::find($id);
+        $papel = Papel::find($papel_id);
+
+        // removerPapel() está no model User [APP\User]
+        $usuario->removerPapel($papel);
+
+        return redirect()->back(); // retorna para última página
     }
 }

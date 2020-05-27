@@ -28,6 +28,8 @@
 					<td>{{ $u->name }}</td>
 					<td>{{ $u->email }}</td>
 					<td style="text-align:center">
+						<a href="{{ route('admin.usuarios.papel', $u->id) }}" title="Papéis de usuário"><img src="{{ asset('img/papeis.png') }}"></a>
+						<span style="margin-left:40px"></span>
 						<a href="{{ route('admin.usuarios.editar', $u->id) }}" title="Editar"><img src="{{ asset('img/edit.png') }}"></a>
 						<span style="margin-left:40px"></span>
 						<a 

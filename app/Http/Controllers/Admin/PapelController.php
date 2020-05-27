@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Papel; // declara o model
+use App\Papel;
+use App\Permissao; // declara o model
 
 class PapelController extends Controller
 {
@@ -76,5 +77,37 @@ class PapelController extends Controller
             'class'=>'teal lighten-2 white-text']);
 
         return redirect()->route('admin.papel');
+    }
+
+    // -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+    //         ***********    RELACIONANDO PAPEL-PERMISSÃO *****************
+    // -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+    // os nomes dos métodos aqui devem ser conforme estabelecidos nas rotas
+
+    public function permissao($id)
+    {
+        $papel = Papel::find($id);
+        $permissao = Permissao::all();
+
+        return view('admin.papel.permissao', compact('papel', 'permissao'));
+    }
+
+    public function salvarPermissao(Request $req, $id)
+    {
+        $papel = Papel::find($id);
+        $permissao = Permissao::find($req['permissao_id']);
+        $papel->adicionarPermissao($permissao); // adicionarPermissão vem do model [App\Papel]
+
+        return redirect()->back();
+    }
+
+    public function excluirPermissao($id, $id_permissao)
+    {
+        $papel = Papel::find($id);
+        $permissao = Permissao::find($id_permissao);
+        $papel->removerPermissao($permissao); // removerPermissao vem do model [App\Papel]
+
+        return redirect()->back();
     }
 }

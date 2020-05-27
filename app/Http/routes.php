@@ -255,6 +255,26 @@ Route::group(['middleware'=>'auth'], function() {
 
 	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
 
+	// relação papel-usuário
+
+	Route::get('/admin/usuarios/papel/{id}', ['as' => 'admin.usuarios.papel', 'uses' => 'Admin\UsuarioController@papel']);
+
+	Route::post('/admin/usuarios/papel/salvar/{id}', ['as' => 'admin.usuarios.papel.salvar', 'uses' => 'Admin\UsuarioController@salvarPapel']);
+
+	Route::get('/admin/usuarios/papel/excluir/{id}/{papel_id}', ['as' => 'admin.usuarios.papel.excluir', 'uses' => 'Admin\UsuarioController@excluirPapel']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
+	// relação papel-permissão
+
+	Route::get('/admin/papel/permissao/{id}', ['as' => 'admin.papel.permissao', 'uses' => 'Admin\PapelController@permissao']);
+
+	Route::post('/admin/papel/permissao/salvar/{id}', ['as' => 'admin.papel.permissao.salvar', 'uses' => 'Admin\PapelController@salvarPermissao']);
+
+	Route::get('/admin/papel/permissao/excluir/{id}/{id_permissao}', ['as' => 'admin.papel.permissao.excluir', 'uses' => 'Admin\PapelController@excluirPermissao']);
+
+	// -------------------- x -------------------- x -------------------- x -------------------- x --------------------
+
 });
 // --------------------------------------------------------------
 // 		** FIM do bloco de acesso protegido
